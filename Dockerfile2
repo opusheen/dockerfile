@@ -1,0 +1,10 @@
+FROM picoded/ubuntu-openjdk-8-jdk
+RUN apt-get update && apt-get install -y  tomcat8
+RUN apt-get update && apt-get install -y  maven
+RUN apt-get update && apt-get install -y git
+RUN mkdir project
+WORKDIR /project
+RUN git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+WORKDIR  /project/boxfuse-sample-java-war-hello
+RUN mvn package
+CMD ["catolina.sh", "run"]
